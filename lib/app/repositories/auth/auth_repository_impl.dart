@@ -45,25 +45,19 @@ class AuthRepositoryImpl implements AuthRepository {
       {
         'email': email,
         'password': password,
-      }
-      );
-
+      },
+    );
     if (result.hasError) {
       if (result.statusCode == 403) {
-        log(
-          'Usuário ou senha inválidos',
-          error: result.statusText,
-          stackTrace: StackTrace.current,
-        );
+        log('Usuário ou senha inválidos',
+            error: result.statusText, stackTrace: StackTrace.current);
         throw UserNotFoundException();
       }
-      log(
-        'Erro ao autenticar o usuário (${result.statusCode})',
-        error: result.statusText,
-        stackTrace: StackTrace.current,
-      );
-      throw RestClientException('Erro ao autenticar o usuário');
+      log('Erro ao autenticar o usuário ${result.statusCode}',
+          error: result.statusText, stackTrace: StackTrace.current);
+      throw RestClientException('Erro ao autenticar usuário');
     }
+
     return UserModel.fromMap(result.body);
   }
 }

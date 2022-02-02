@@ -13,15 +13,15 @@ class RestClient extends GetConnect {
 class RestClientException implements Exception {
 
   final int? code;
-  final String menssage;
+  final String message;
 
   RestClientException(
-    this.menssage, {
+    this.message, {
       this.code
     }
   );
 
   @override
-  String toString() => "RestClientException(code: $code, menssage: $menssage)";
+  String toString() => "RestClientException(code: $code, menssage: $message)";
   
 }
